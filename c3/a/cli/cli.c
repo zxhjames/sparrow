@@ -1,8 +1,8 @@
 #include "cli.h"
 #include <stdio.h>
 #include <string.h>
-#include "parser.h"
-#include "vm.h"
+#include "../parser/parser.h"
+#include "../vm/vm.h"
 #include "core.h"
 
 //执行脚本文件
@@ -14,7 +14,7 @@ static void runFile(const char* path) {
         root[lastSlash - path + 1] = '\0';
         rootDir = root;
     }
-
+    
     VM* vm = newVM();
     const char* sourceCode = readFile(path);
 

@@ -2,6 +2,7 @@
 #define _PARSER_PARSER_H
 #include "common.h"
 #include "vm.h"
+#include <stdint.h>
 
 typedef enum {
    TOKEN_UNKNOWN,
@@ -101,7 +102,8 @@ struct parser {
    int interpolationExpectRightParenNum;
    struct parser* parent;  //指向父parser
    VM* vm;
-} ;
+}  ;
+
 
 #define PEEK_TOKEN(parserPtr) parserPtr->curToken.type
 

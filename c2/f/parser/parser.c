@@ -1,4 +1,5 @@
 #include "parser.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "common.h"
@@ -6,12 +7,13 @@
 #include "unicodeUtf8.h"
 #include <string.h>
 #include <ctype.h>
-
+typedef struct parser Parser ;
 struct keywordToken {
    char* keyword;
    uint8_t     length;
    TokenType   token;
 };  //关键字(保留字)结构
+
 
 //关键字查找表
 struct keywordToken keywordsToken[] = {
@@ -39,6 +41,7 @@ struct keywordToken keywordsToken[] = {
 // 判断start是否为关键字并返回相应的token
 static TokenType idOrkeyword(const char* start, uint32_t length) {
    uint32_t idx = 0;
+   // 遍历关键字寻找表，寻找token
    while (keywordsToken[idx].keyword != NULL) {
       if (keywordsToken[idx].length == length && \
          memcmp(keywordsToken[idx].keyword, start, length) == 0) {
